@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling
+.pytest_cache/
+.ipynb_checkpoints/
+.ruff_cache/
+
+# Model caches
+.cache/
+models/
+
+# OS
+.DS_Store
+Thumbs.db

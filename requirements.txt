@@ -1,0 +1,10 @@
+transformers>=4.40
+torch>=2.0
+# XLM-R's tokenizer is sentencepiece/tiktoken-backed; without these the
+# toxicity model fails to load with an opaque tokenizer conversion error.
+sentencepiece>=0.2
+tiktoken>=0.7
+protobuf>=4.25
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.0

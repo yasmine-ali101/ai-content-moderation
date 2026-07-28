@@ -1,0 +1,601 @@
+{
+  "eval_set": {
+    "examples": 36,
+    "label_distribution": {
+      "Neutral": 11,
+      "Offensive": 8,
+      "Racism": 5,
+      "Sexism": 3,
+      "Religious Discrimination": 2,
+      "Extremism": 7
+    }
+  },
+  "config": {
+    "hate_model": "IbrahimAmin/marbertv2-finetuned-egyptian-hate-speech-classification",
+    "toxicity_model": "akhooli/xlm-r-large-arabic-toxic",
+    "neutral_confidence_floor": 0.85,
+    "toxicity_threshold": 0.6
+  },
+  "timing": {
+    "total_seconds": 14.15,
+    "seconds_per_example": 0.3931
+  },
+  "stage_one_only": {
+    "binary": {
+      "accuracy": 0.7778,
+      "precision": 0.9474,
+      "recall": 0.72,
+      "f1": 0.8182,
+      "true_positive": 18,
+      "false_positive": 1,
+      "true_negative": 10,
+      "false_negative": 7
+    },
+    "multiclass": {
+      "accuracy": 0.7222,
+      "correct": 26,
+      "total": 36,
+      "macro_f1": 0.7194,
+      "per_category": {
+        "Neutral": {
+          "precision": 0.5882,
+          "recall": 0.9091,
+          "f1": 0.7143,
+          "support": 11
+        },
+        "Offensive": {
+          "precision": 0.875,
+          "recall": 0.875,
+          "f1": 0.875,
+          "support": 8
+        },
+        "Racism": {
+          "precision": 0.6667,
+          "recall": 0.8,
+          "f1": 0.7273,
+          "support": 5
+        },
+        "Sexism": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "Religious Discrimination": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "Extremism": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        }
+      }
+    }
+  },
+  "full_cascade": {
+    "binary": {
+      "accuracy": 0.8056,
+      "precision": 0.8462,
+      "recall": 0.88,
+      "f1": 0.8627,
+      "true_positive": 22,
+      "false_positive": 4,
+      "true_negative": 7,
+      "false_negative": 3
+    },
+    "multiclass": {
+      "accuracy": 0.7222,
+      "correct": 26,
+      "total": 36,
+      "macro_f1": 0.7829,
+      "per_category": {
+        "Neutral": {
+          "precision": 0.7,
+          "recall": 0.6364,
+          "f1": 0.6667,
+          "support": 11
+        },
+        "Offensive": {
+          "precision": 0.875,
+          "recall": 0.875,
+          "f1": 0.875,
+          "support": 8
+        },
+        "Racism": {
+          "precision": 0.6667,
+          "recall": 0.8,
+          "f1": 0.7273,
+          "support": 5
+        },
+        "Sexism": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "Religious Discrimination": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "Extremism": {
+          "precision": 0.4286,
+          "recall": 0.4286,
+          "f1": 0.4286,
+          "support": 7
+        }
+      }
+    }
+  },
+  "escalations": 17,
+  "actions": {
+    "allow": 10,
+    "flag": 5,
+    "mask": 21
+  },
+  "errors": [
+    {
+      "text": "الناس من البلد دي كلهم كذابين.",
+      "expected": "Racism",
+      "predicted": "Extremism",
+      "note": null
+    },
+    {
+      "text": "لازم نكسر ونولّع فيهم",
+      "expected": "Extremism",
+      "predicted": "Offensive",
+      "note": null
+    },
+    {
+      "text": "اللي مش معانا يبقى عدو ولازم يتصفّى.",
+      "expected": "Extremism",
+      "predicted": "Neutral",
+      "note": null
+    },
+    {
+      "text": "ياريت الناس دي كلها تختفي من الدنيا.",
+      "expected": "Extremism",
+      "predicted": "Neutral",
+      "note": null
+    },
+    {
+      "text": "اللي رأيه غير رأيي يبقى عدوى.",
+      "expected": "Extremism",
+      "predicted": "Neutral",
+      "note": null
+    },
+    {
+      "text": "يجب قتل الحشرات الضارة",
+      "expected": "Neutral",
+      "predicted": "Extremism",
+      "note": "Contains the verb 'kill' but refers to pest control."
+    },
+    {
+      "text": "عايزة أقتل الحشرات الضارة",
+      "expected": "Neutral",
+      "predicted": "Extremism",
+      "note": "Same trap as above, first person."
+    },
+    {
+      "text": "الراجل الاسود طبيب",
+      "expected": "Neutral",
+      "predicted": "Racism",
+      "note": "Mentions race in a neutral factual statement."
+    },
+    {
+      "text": "انت عبد وملكش قيمة",
+      "expected": "Offensive",
+      "predicted": "Racism",
+      "note": null
+    },
+    {
+      "text": "المباراة كانت وحشة والفريق لعب سيء",
+      "expected": "Neutral",
+      "predicted": "Extremism",
+      "note": "Criticism without abuse."
+    }
+  ],
+  "predictions": [
+    {
+      "text": "إنت حمار وما بتفهمش حاجة.",
+      "category": "Offensive",
+      "confidence": 0.9992,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "*** **** وما ****** حاجة.",
+      "expected": "Offensive"
+    },
+    {
+      "text": "إنت واحد تافه ومحدش طايقك.",
+      "category": "Offensive",
+      "confidence": 0.9992,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "*** واحد **** ومحدش طايقك.",
+      "expected": "Offensive"
+    },
+    {
+      "text": "الستات ما ينفعوش يشتغلوا.",
+      "category": "Sexism",
+      "confidence": 0.9995,
+      "stage": "hate",
+      "action": "flag",
+      "escalated": false,
+      "explanation": "هذا الكلام يتضمن تمييزًا على أساس الجنس، وهو غير مقبول لأن الجميع يستحقون المساواة والاحترام.",
+      "masked_text": null,
+      "expected": "Sexism"
+    },
+    {
+      "text": "الناس من البلد دي كلهم كذابين.",
+      "category": "Extremism",
+      "confidence": 0.9928,
+      "stage": "toxicity",
+      "action": "mask",
+      "escalated": true,
+      "explanation": "هذا الكلام يتضمن أفكارًا متطرفة، وهذا غير مقبول لأنه يشجع على العنف وعدم التسامح.",
+      "masked_text": "الناس من البلد دي كلهم *******",
+      "expected": "Racism"
+    },
+    {
+      "text": "دينك كاذب",
+      "category": "Religious Discrimination",
+      "confidence": 0.9994,
+      "stage": "hate",
+      "action": "flag",
+      "escalated": false,
+      "explanation": "هذا الكلام يسيء إلى معتقدات دينية، وهذا غير مقبول لأن حرية المعتقد حق للجميع.",
+      "masked_text": null,
+      "expected": "Religious Discrimination"
+    },
+    {
+      "text": "لازم نكسر ونولّع فيهم",
+      "category": "Offensive",
+      "confidence": 0.9988,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "لازم نكسر ونولّع فيهم",
+      "expected": "Extremism"
+    },
+    {
+      "text": "أنا عايز أقتل أي حد يخالفني.",
+      "category": "Extremism",
+      "confidence": 0.9565,
+      "stage": "toxicity",
+      "action": "mask",
+      "escalated": true,
+      "explanation": "هذا الكلام يتضمن أفكارًا متطرفة، وهذا غير مقبول لأنه يشجع على العنف وعدم التسامح.",
+      "masked_text": "أنا عايز أقتل أي حد يخالفني.",
+      "expected": "Extremism"
+    },
+    {
+      "text": "إنت شكلك شبه القرد.",
+      "category": "Offensive",
+      "confidence": 0.9991,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "*** شكلك شبه ******",
+      "expected": "Offensive"
+    },
+    {
+      "text": "إيه اللبس المقرف ده يا معفّن؟",
+      "category": "Offensive",
+      "confidence": 0.9991,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "إيه اللبس ****** ده يا ******",
+      "expected": "Offensive"
+    },
+    {
+      "text": "اللي مش معانا يبقى عدو ولازم يتصفّى.",
+      "category": "Neutral",
+      "confidence": 0.9996,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Extremism"
+    },
+    {
+      "text": "ياريت الناس دي كلها تختفي من الدنيا.",
+      "category": "Neutral",
+      "confidence": 0.9997,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Extremism"
+    },
+    {
+      "text": "انتي غبية",
+      "category": "Offensive",
+      "confidence": 0.999,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "انتي ****",
+      "expected": "Offensive"
+    },
+    {
+      "text": "إنت واحد محدش طايقك.",
+      "category": "Offensive",
+      "confidence": 0.9992,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "*** واحد محدش طايقك.",
+      "expected": "Offensive"
+    },
+    {
+      "text": "أنا حزين",
+      "category": "Neutral",
+      "confidence": 0.9996,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Neutral"
+    },
+    {
+      "text": "اللي رأيه غير رأيي يبقى عدوى.",
+      "category": "Neutral",
+      "confidence": 0.9994,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Extremism"
+    },
+    {
+      "text": "اللي رأيه غير رأيي يبقى عدوى ولازم يموت",
+      "category": "Extremism",
+      "confidence": 0.9279,
+      "stage": "toxicity",
+      "action": "mask",
+      "escalated": true,
+      "explanation": "هذا الكلام يتضمن أفكارًا متطرفة، وهذا غير مقبول لأنه يشجع على العنف وعدم التسامح.",
+      "masked_text": "اللي رأيه غير رأيي يبقى عدوى ولازم يموت",
+      "expected": "Extremism"
+    },
+    {
+      "text": "الناس ال لونها اسود قبيحة",
+      "category": "Racism",
+      "confidence": 0.9963,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام يحتوي على تمييز عنصري، وهذا غير مقبول لأنه يقلل من قيمة الناس بناءً على عرقهم أو جنسيتهم.",
+      "masked_text": "الناس ال لونها **** *****",
+      "expected": "Racism"
+    },
+    {
+      "text": "القرد في عين أمه غزال",
+      "category": "Neutral",
+      "confidence": 0.9896,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Neutral"
+    },
+    {
+      "text": "الغابة فيها حيواناات كتيرة",
+      "category": "Neutral",
+      "confidence": 0.9995,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Neutral"
+    },
+    {
+      "text": "يجب قتل الحشرات الضارة",
+      "category": "Extremism",
+      "confidence": 0.9479,
+      "stage": "toxicity",
+      "action": "mask",
+      "escalated": true,
+      "explanation": "هذا الكلام يتضمن أفكارًا متطرفة، وهذا غير مقبول لأنه يشجع على العنف وعدم التسامح.",
+      "masked_text": "يجب قتل الحشرات الضارة",
+      "expected": "Neutral"
+    },
+    {
+      "text": "عايزة أقتل الحشرات الضارة",
+      "category": "Extremism",
+      "confidence": 0.9625,
+      "stage": "toxicity",
+      "action": "mask",
+      "escalated": true,
+      "explanation": "هذا الكلام يتضمن أفكارًا متطرفة، وهذا غير مقبول لأنه يشجع على العنف وعدم التسامح.",
+      "masked_text": "عايزة أقتل الحشرات الضارة",
+      "expected": "Neutral"
+    },
+    {
+      "text": "الصينيين شكلهم وحش",
+      "category": "Racism",
+      "confidence": 0.9995,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام يحتوي على تمييز عنصري، وهذا غير مقبول لأنه يقلل من قيمة الناس بناءً على عرقهم أو جنسيتهم.",
+      "masked_text": "******** شكلهم ***",
+      "expected": "Racism"
+    },
+    {
+      "text": "الصينيين قصيرين وعنيهم ضيقة",
+      "category": "Racism",
+      "confidence": 0.9995,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام يحتوي على تمييز عنصري، وهذا غير مقبول لأنه يقلل من قيمة الناس بناءً على عرقهم أو جنسيتهم.",
+      "masked_text": "******** ****** وعنيهم ضيقة",
+      "expected": "Racism"
+    },
+    {
+      "text": "عايزة أولع فى العمارة",
+      "category": "Extremism",
+      "confidence": 0.6143,
+      "stage": "toxicity",
+      "action": "mask",
+      "escalated": true,
+      "explanation": "هذا الكلام يتضمن أفكارًا متطرفة، وهذا غير مقبول لأنه يشجع على العنف وعدم التسامح.",
+      "masked_text": "عايزة أولع فى العمارة",
+      "expected": "Extremism"
+    },
+    {
+      "text": "انت راجل جميل و متخلف",
+      "category": "Offensive",
+      "confidence": 0.9992,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام مسيء وقد يجرح مشاعر الآخرين. استخدام لغة محترمة يساعد في التواصل بشكل أفضل.",
+      "masked_text": "*** راجل جميل و *****",
+      "expected": "Offensive"
+    },
+    {
+      "text": "أي حد مسلم مبيفهمش حاجة",
+      "category": "Religious Discrimination",
+      "confidence": 0.9996,
+      "stage": "hate",
+      "action": "flag",
+      "escalated": false,
+      "explanation": "هذا الكلام يسيء إلى معتقدات دينية، وهذا غير مقبول لأن حرية المعتقد حق للجميع.",
+      "masked_text": null,
+      "expected": "Religious Discrimination"
+    },
+    {
+      "text": "الراجل الاسود طبيب",
+      "category": "Racism",
+      "confidence": 0.9934,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام يحتوي على تمييز عنصري، وهذا غير مقبول لأنه يقلل من قيمة الناس بناءً على عرقهم أو جنسيتهم.",
+      "masked_text": "****** الاسود طبيب",
+      "expected": "Neutral"
+    },
+    {
+      "text": "انت جميل. الستات مكانهم المطبخ",
+      "category": "Sexism",
+      "confidence": 0.9995,
+      "stage": "hate",
+      "action": "flag",
+      "escalated": false,
+      "explanation": "هذا الكلام يتضمن تمييزًا على أساس الجنس، وهو غير مقبول لأن الجميع يستحقون المساواة والاحترام.",
+      "masked_text": null,
+      "expected": "Sexism"
+    },
+    {
+      "text": "انت عبد وملكش قيمة",
+      "category": "Racism",
+      "confidence": 0.9902,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام يحتوي على تمييز عنصري، وهذا غير مقبول لأنه يقلل من قيمة الناس بناءً على عرقهم أو جنسيتهم.",
+      "masked_text": "*** *** ***** قيمة",
+      "expected": "Offensive"
+    },
+    {
+      "text": "انت كلب ومتخلف الستات مكانهم المطبخ",
+      "category": "Sexism",
+      "confidence": 0.9993,
+      "stage": "hate",
+      "action": "flag",
+      "escalated": false,
+      "explanation": "هذا الكلام يتضمن تمييزًا على أساس الجنس، وهو غير مقبول لأن الجميع يستحقون المساواة والاحترام.",
+      "masked_text": null,
+      "expected": "Sexism"
+    },
+    {
+      "text": "المصريين احسن من الباقي وانت كلب",
+      "category": "Racism",
+      "confidence": 0.9992,
+      "stage": "hate",
+      "action": "mask",
+      "escalated": false,
+      "explanation": "هذا الكلام يحتوي على تمييز عنصري، وهذا غير مقبول لأنه يقلل من قيمة الناس بناءً على عرقهم أو جنسيتهم.",
+      "masked_text": "المصريين احسن من الباقي وانت ***",
+      "expected": "Racism"
+    },
+    {
+      "text": "الجو حلو النهاردة",
+      "category": "Neutral",
+      "confidence": 0.9997,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Neutral"
+    },
+    {
+      "text": "شكراً على مساعدتك، ربنا يكرمك",
+      "category": "Neutral",
+      "confidence": 0.9997,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Neutral"
+    },
+    {
+      "text": "الفيلم ده كان ممل جداً",
+      "category": "Neutral",
+      "confidence": 0.9997,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Neutral"
+    },
+    {
+      "text": "المباراة كانت وحشة والفريق لعب سيء",
+      "category": "Extremism",
+      "confidence": 0.7123,
+      "stage": "toxicity",
+      "action": "mask",
+      "escalated": true,
+      "explanation": "هذا الكلام يتضمن أفكارًا متطرفة، وهذا غير مقبول لأنه يشجع على العنف وعدم التسامح.",
+      "masked_text": "المباراة كانت وحشة والفريق لعب سيء",
+      "expected": "Neutral"
+    },
+    {
+      "text": "أنا مش موافق على رأيك بس بحترمه",
+      "category": "Neutral",
+      "confidence": 0.9997,
+      "stage": "toxicity",
+      "action": "allow",
+      "escalated": true,
+      "explanation": "الجملة سليمة ولا تحتوي على إساءة.",
+      "masked_text": null,
+      "expected": "Neutral"
+    }
+  ]
+}
