@@ -9,7 +9,7 @@ redaction, over a FastAPI service.
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white">
   <img alt="Transformers" src="https://img.shields.io/badge/%F0%9F%A4%97-Transformers-FFD21E">
   <img alt="FastAPI" src="https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-36%20passing-16A34A">
+  <img alt="Tests" src="https://github.com/yasmine-ali101/ai-content-moderation/actions/workflows/tests.yml/badge.svg">
 </p>
 
 ---
