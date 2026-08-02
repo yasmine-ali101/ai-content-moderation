@@ -1,6 +1,6 @@
 """Tests for label normalisation.
 
-The two models in the cascade emit incompatible label vocabularies — one uses
+The two models in the cascade emit incompatible label vocabularies, one uses
 category names with inconsistent casing, the other uses `LABEL_0`/`LABEL_1`.
 Getting this mapping wrong silently mislabels everything downstream.
 """
@@ -34,7 +34,7 @@ def test_known_labels_map_to_the_canonical_vocabulary(raw, expected):
 def test_unknown_labels_fail_closed_to_offensive_not_neutral():
     """An unrecognised label means a model flagged *something*.
 
-    Defaulting to Neutral would let it through — the more dangerous of the two
+    Defaulting to Neutral would let it through, the more dangerous of the two
     possible errors for a moderation system.
     """
     assert labels.normalise("some_unseen_category") == labels.OFFENSIVE

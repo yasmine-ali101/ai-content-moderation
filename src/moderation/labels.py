@@ -3,7 +3,7 @@
 The two models in the cascade disagree about what a label even is. The dialect
 model emits human-readable category names with inconsistent casing and spacing;
 the toxicity model emits `LABEL_0` / `LABEL_1`. Normalising both into one
-vocabulary here — rather than string-matching at each call site — is what keeps
+vocabulary here, rather than string-matching at each call site, is what keeps
 the pipeline logic readable and testable.
 """
 

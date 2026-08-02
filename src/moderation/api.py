@@ -2,7 +2,7 @@
 
     uvicorn moderation.api:app --reload
 
-Models are loaded once at startup, not per request — a cold `from_pretrained`
+Models are loaded once at startup, not per request, a cold `from_pretrained`
 costs tens of seconds and would dominate every response.
 """
 

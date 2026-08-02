@@ -1,7 +1,7 @@
 """Tests for the cascade's routing logic.
 
 Both classifiers are stubbed, so these run in milliseconds with no model
-download — the routing decisions are what matter here, not model quality.
+download, the routing decisions are what matter here, not model quality.
 """
 
 import pytest

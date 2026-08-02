@@ -132,12 +132,12 @@ class ModerationPipeline:
         category = labels.normalise(raw["label"])
         confidence = float(raw["score"])
 
-        # Stage 1 found something. Trust its category — that detail is the whole
+        # Stage 1 found something. Trust its category, that detail is the whole
         # reason for using a dialect-specific model.
         if category != labels.NEUTRAL:
             return category, confidence, "hate", False
 
-        # Stage 1 said neutral. Escalate when it is confident *or* not — but
+        # Stage 1 said neutral. Escalate when it is confident *or* not, but
         # record whether the neutral was shaky, since that is the case the
         # notebook's version silently accepted.
         escalated = True
@@ -160,7 +160,7 @@ class ModerationPipeline:
     def mask(self, text: str) -> str:
         """Redact the individual tokens the hate model scores as harmful.
 
-        Word-level classification is a blunt instrument — these models were
+        Word-level classification is a blunt instrument, these models were
         trained on sentences, and a single word out of context is a distribution
         they never saw. The threshold is therefore set high (0.80): over-masking
         a clean word is more visible and more irritating than leaving one through,
